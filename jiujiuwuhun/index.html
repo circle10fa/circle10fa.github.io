@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="久久武魂 - 专注武道精神传承与实战应用指南。提供武术流派介绍、修炼心得、实战技巧及传统文化解析，助您在修习武道之路上找到正确的方向与坚持的力量。">
+    <meta name="keywords" content="久久武魂, 武术, 太极, 散打, 传统武术, 武道精神, 修炼指南">
+    <title>久久武魂-武道传承与实战应用指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8B4513; /* SaddleBrown */
+            --secondary-color: #D2691E; /* Chocolate */
+            --accent-color: #F4A460; /* SandyBrown */
+            --bg-color: #F9F7F2; /* Off-white */
+            --text-color: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --border-radius: 8px;
+            --container-width: 1200px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-color);
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .header-cta:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAtMjBoMnYyaC0ydi0yeiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9nPjwvc3ZnPg==');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Articles List */
+        .articles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .article-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-thumb {
+            width: 280px;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .article-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .article-tag {
+            background-color: rgba(139, 69, 19, 0.1);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .article-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        .article-excerpt {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            margin-top: auto;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:hover {
+            gap: 10px;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .widget {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        .rank-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .rank-num {
+            width: 24px;
+            height: 24px;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .rank-list li:nth-child(1) .rank-num { background-color: #FFD700; color: #fff; }
+        .rank-list li:nth-child(2) .rank-num { background-color: #C0C0C0; color: #fff; }
+        .rank-list li:nth-child(3) .rank-num { background-color: #CD7F32; color: #fff; }
+
+        .rank-link {
+            font-size: 14px;
+            color: var(--text-color);
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .rank-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .quote-box {
+            background-color: var(--bg-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--white);
+            padding: 80px 0;
+            margin-bottom: 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .feature-item:hover {
+            background-color: var(--bg-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(139, 69, 19, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Culture/Philosophy Section */
+        .culture {
+            background-color: #2C2C2C;
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .culture-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .culture h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .culture p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #999;
+            padding: 60px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .article-card {
+                flex-direction: column;
+            }
+            .article-thumb {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Mobile Menu would go here in full implementation */
+            }
+            .header-cta {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            .section-header h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                久久武魂
+                <span>Wu Hun</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">流派精粹</a></li>
+                    <li><a href="#">实战技法</a></li>
+                    <li><a href="#">修心之道</a></li>
+                    <li><a href="#">武道论坛</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="header-cta">加入社群</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>以武入道，久久为功</h1>
+                    <p>探索传统武术与现代实战的结合，从入门到精通的完整修行指南。在这里，我们不只是教授招式，更传承武道精神与内在修养。</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">开始修炼</a>
+                        <a href="#" class="btn btn-outline">了解文化</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://picsum.photos/seed/martialarts/600/400" alt="武道修行场景">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/></svg>
+                        </div>
+                        <h3>科学训练体系</h3>
+                        <p>结合解剖学与运动力学，为您量身定制安全高效的武术训练方案。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                        <h3>身心同修</h3>
+                        <p>注重呼吸吐纳与意念引导，帮助练习者在强身健体的同时提升专注力。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <h3>实战安全</h3>
+                        <p>强调防身自卫而非暴力对抗，教授在复杂环境下的自我保护技巧。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="container">
+            <div class="main-grid">
+                <div class="content-area">
+                    <div class="section-header">
+                        <h2>精选修炼文章</h2>
+                        <p>深入解析武术技法与文化内涵</p>
+                    </div>
+
+                    <div class="articles-list">
+                        <article class="article-card">
+                            <img src="https://picsum.photos/seed/taiji/400/300" alt="太极拳" class="article-thumb">
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-tag">内家拳</span>
+                                    <span>2023-10-24</span>
+                                </div>
+                                <h3 class="article-title">太极推手中的“听劲”奥秘：如何感知对手力道</h3>
+                                <p class="article-excerpt">听劲是太极拳的核心技艺之一。本文将详细解析如何通过放松关节、调整重心来敏锐捕捉对手的劲力变化，实现四两拨千斤的效果。</p>
+                                <a href="#" class="read-more">阅读全文 &rarr;</a>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <img src="https://picsum.photos/seed/sanda/400/300" alt="散打" class="article-thumb">
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-tag">实战技击</span>
+                                    <span>2023-10-20</span>
+                                </div>
+                                <h3 class="article-title">现代散打实战中的步法运用与距离控制</h3>
+                                <p class="article-excerpt">步法是散打运动员的生命线。优秀的步法能够让你始终保持最佳的攻击距离，同时规避对手的重击。探讨前滑步、后滑步在实战中的具体应用。</p>
+                                <a href="#" class="read-more">阅读全文 &rarr;</a>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <img src="https://picsum.photos/seed/history/400/300" alt="武术历史" class="article-thumb">
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-tag">文化溯源</span>
+                                    <span>2023-10-15</span>
+                                </div>
+                                <h3 class="article-title">从“止戈为武”看中国武术的精神内核</h3>
+                                <p class="article-excerpt">武术不仅仅是搏击的技术，更是一种文化符号。解读汉字“武”的构造，探讨武术在历史长河中如何从杀伐技艺演变为修身养性的文化瑰宝。</p>
+                                <a href="#" class="read-more">阅读全文 &rarr;</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h4 class="widget-title">热门修炼流派</h4>
+                        <ul class="rank-list">
+                            <li>
+                                <span class="rank-num">1</span>
+                                <a href="#" class="rank-link">太极拳（陈式/杨式）</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">2</span>
+                                <a href="#" class="rank-link">咏春拳</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">3</span>
+                                <a href="#" class="rank-link">八极拳</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">4</span>
+                                <a href="#" class="rank-link">形意拳</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">5</span>
+                                <a href="#" class="rank-link">巴西柔术</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h4 class="widget-title">每日一练</h4>
+                        <div class="quote-box">
+                            “拳无拳，意无意，无意之中是真意。”
+                            <br>
+                            <small style="display:block; margin-top:5px; color:#999;">—— 陈鑫《陈氏太极拳图说》</small>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h4 class="widget-title">修炼者问答</h4>
+                        <ul class="rank-list">
+                            <li>
+                                <a href="#" class="rank-link">初学者应该如何选择拳种？</a>
+                            </li>
+                            <li>
+                                <a href="#" class="rank-link">练武会耽误工作吗？</a>
+                            </li>
+                            <li>
+                                <a href="#" class="rank-link">如何判断教练是否专业？</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Culture Banner -->
+        <section class="culture">
+            <div class="container culture-content">
+                <h2>久久为功，方得始终</h2>
+                <p>武术之路漫长而艰辛，唯有持之以恒，方能领悟其中的真谛。久久武魂致力于陪伴每一位练习者走过这段旅程，从最初的懵懂到最后的通透。</p>
+                <a href="#" class="btn btn-primary" style="background-color: var(--secondary-color); color: white;">加入修行社群</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>久久武魂</h4>
+                    <p style="opacity: 0.7; margin-bottom: 20px;">传承武术文化，弘扬武道精神。为您提供最专业的武术知识分享与交流平台。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">合作机构</a></li>
+                        <li><a href="#">会员服务</a></li>
+                        <li><a href="#">联系客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="#">视频教程</a></li>
+                        <li><a href="#">图文指南</a></li>
+                        <li><a href="#">装备推荐</a></li>
+                        <li><a href="#">训练计划</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">微博话题</a></li>
+                        <li><a href="#">B站专栏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 久久武魂 Wuhun. All Rights Reserved. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
