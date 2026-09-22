@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="比思论坛 bt - 专注于资源分享与社区讨论的在线平台，提供最新BT种子下载、磁力链接分享及互助交流服务。">
+    <meta name="keywords" content="比思论坛, BT下载, 资源分享, 磁力链接, 种子下载, 社区论坛">
+    <title>比思论坛 bt - 资源分享与社区交流平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --border-color: #e2e8f0;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-sub);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .search-bar {
+                display: block;
+            }
+            .search-bar input {
+                padding: 8px 12px;
+                border: 1px solid var(--border-color);
+                border-radius: 20px;
+                width: 240px;
+                outline: none;
+            }
+            .search-bar input:focus {
+                border-color: var(--primary-color);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 20px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                grid-template-columns: 3fr 1fr;
+            }
+        }
+
+        /* Content Section */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Resource List */
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .resource-info {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .resource-meta {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-sub);
+        }
+
+        .tag.hot {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+
+        .resource-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .resource-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-sub);
+            background-color: #f8fafc;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .widget {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .widget-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .quick-link {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8fafc;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .quick-link:hover {
+            background-color: #e2e8f0;
+            color: var(--primary-color);
+        }
+
+        .notice-list li {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .notice-list li:last-child {
+            border-bottom: none;
+        }
+
+        .notice-list li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: auto;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .resource-card {
+                flex-direction: column;
+            }
+            .resource-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                    <line x1="4" y1="22" x2="4" y2="15"></line>
+                </svg>
+                <span>比思论坛 bt</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">电影资源</a>
+                <a href="#">电视剧集</a>
+                <a href="#">动漫番剧</a>
+                <a href="#">软件工具</a>
+                <a href="#">音乐专辑</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索种子、磁力链接...">
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>共享资源，极速下载</h1>
+        <p>比思论坛 bt 提供海量高清影视、软件工具及学术资源的磁力链接与种子分享，致力于打造最活跃的P2P资源交流社区。</p>
+        <div class="hero-stats">
+            <span>🔥 10万+ 热门资源</span>
+            <span>⚡ 实时磁力更新</span>
+            <span>🛡️ 安全互助社区</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Main Content -->
+        <main class="content-area">
+            
+            <!-- Hot Section -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">本周热门推荐</h2>
+                    <a href="#" style="font-size: 0.9rem; color: var(--primary-color);">查看更多 &rarr;</a>
+                </div>
+                <div class="resource-list">
+                    <!-- Item 1 -->
+                    <article class="resource-card">
+                        <div class="resource-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        </div>
+                        <div class="resource-info">
+                            <h3 class="resource-title"><a href="#">[4K高清] 2023年度科幻巨制《星际穿越2：归来》完整版 BT下载</a></h3>
+                            <div class="resource-meta">
+                                <span class="tag hot">TOP 1</span>
+                                <span>热度: 12,580</span>
+                                <span>大小: 45.2 GB</span>
+                                <span>发布: 2023-10-24</span>
+                            </div>
+                            <p class="resource-desc">包含1080P与4K重制版，支持DTS-HD Master Audio音轨，字幕组官方汉化。适合家庭影院体验。</p>
+                            <div class="resource-actions">
+                                <a href="#" class="btn btn-primary">获取磁力</a>
+                                <a href="#" class="btn btn-outline">详情</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Item 2 -->
+                    <article class="resource-card">
+                        <div class="resource-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        </div>
+                        <div class="resource-info">
+                            <h3 class="resource-title"><a href="#">[720P] 经典美剧《老友记》S1-S10 全季合集 BT种子</a></h3>
+                            <div class="resource-meta">
+                                <span class="tag">经典</span>
+                                <span>热度: 8,920</span>
+                                <span>大小: 80.5 GB</span>
+                                <span>发布: 2023-10-23</span>
+                            </div>
+                            <p class="resource-desc">MP4格式，无水印，包含中英双语字幕。适合日常休闲观看，收藏级资源。</p>
+                            <div class="resource-actions">
+                                <a href="#" class="btn btn-primary">获取磁力</a>
+                                <a href="#" class="btn btn-outline">详情</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Item 3 -->
+                    <article class="resource-card">
+                        <div class="resource-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        </div>
+                        <div class="resource-info">
+                            <h3 class="resource-title"><a href="#">[安装包] Adobe 2024 全套专业软件破解版下载</a></h3>
+                            <div class="resource-meta">
+                                <span class="tag">工具</span>
+                                <span>热度: 6,340</span>
+                                <span>大小: 6.8 GB</span>
+                                <span>发布: 2023-10-22</span>
+                            </div>
+                            <p class="resource-desc">包含Photoshop, Premiere Pro, After Effects等最新版本，附带安装教程及激活工具。</p>
+                            <div class="resource-actions">
+                                <a href="#" class="btn btn-primary">获取磁力</a>
+                                <a href="#" class="btn btn-outline">详情</a>
+                            </div>
+                        </div>
+                    </article>
+
+                     <!-- Item 4 -->
+                     <article class="resource-card">
+                        <div class="resource-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        </div>
+                        <div class="resource-info">
+                            <h3 class="resource-title"><a href="#">[高清纪录片] BBC 自然系列《地球脉动 III》蓝光原盘</a></h3>
+                            <div class="resource-meta">
+                                <span class="tag">纪录片</span>
+                                <span>热度: 5,120</span>
+                                <span>大小: 52.1 GB</span>
+                                <span>发布: 2023-10-21</span>
+                            </div>
+                            <p class="resource-desc">H.265编码，杜比视界支持，画面震撼，音质纯净，适合大屏欣赏。</p>
+                            <div class="resource-actions">
+                                <a href="#" class="btn btn-primary">获取磁力</a>
+                                <a href="#" class="btn btn-outline">详情</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Latest Updates -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">最新更新</h2>
+                    <a href="#" style="font-size: 0.9rem; color: var(--primary-color);">查看更多 &rarr;</a>
+                </div>
+                <div class="resource-list">
+                    <article class="resource-card" style="padding: 12px; gap: 12px;">
+                        <div class="resource-info">
+                            <div class="resource-title" style="font-size: 1rem; margin-bottom: 2px;">
+                                <a href="#">[影视] 美剧《最后生还者》S01E06-E07 双更</a>
+                            </div>
+                            <div class="resource-meta" style="font-size: 0.8rem;">
+                                <span>更新于: 2小时前</span>
+                                <span>热度: 320</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="resource-card" style="padding: 12px; gap: 12px;">
+                        <div class="resource-info">
+                            <div class="resource-title" style="font-size: 1rem; margin-bottom: 2px;">
+                                <a href="#">[音乐] Taylor Swift 2023 Eras Tour Live CD</a>
+                            </div>
+                            <div class="resource-meta" style="font-size: 0.8rem;">
+                                <span>更新于: 5小时前</span>
+                                <span>热度: 150</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="resource-card" style="padding: 12px; gap: 12px;">
+                        <div class="resource-info">
+                            <div class="resource-title" style="font-size: 1rem; margin-bottom: 2px;">
+                                <a href="#">[游戏] Genshin Impact 4.0 全角色立绘与素材</a>
+                            </div>
+                            <div class="resource-meta" style="font-size: 0.8rem;">
+                                <span>更新于: 1天前</span>
+                                <span>热度: 890</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h4 class="widget-title">快速导航</h4>
+                <div class="quick-links">
+                    <a href="#" class="quick-link">电影专区</a>
+                    <a href="#" class="quick-link">美剧更新</a>
+                    <a href="#" class="quick-link">动漫番剧</a>
+                    <a href="#" class="quick-link">软件下载</a>
+                    <a href="#" class="quick-link">电子书库</a>
+                    <a href="#" class="quick-link">游戏补丁</a>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h4 class="widget-title">论坛公告</h4>
+                <ul class="notice-list">
+                    <li><a href="#">关于服务器维护的临时通知</a></li>
+                    <li><a href="#">新手必看：如何使用迅雷下载磁力链接</a></li>
+                    <li><a href="#">关于禁止发布盗版版权资源的公告</a></li>
+                    <li><a href="#">社区活跃度提升计划及奖励机制</a></li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h4 class="widget-title">热门标签</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <a href="#" class="tag">4K</a>
+                    <a href="#" class="tag">蓝光</a>
+                    <a href="#" class="tag">重制版</a>
+                    <a href="#" class="tag">破解版</a>
+                    <a href="#" class="tag">汉化</a>
+                    <a href="#" class="tag">BT下载</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>比思论坛 bt</h4>
+                <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.6;">
+                    专注于资源分享的社区平台，提供安全、高效的BT下载与磁力链接服务。我们致力于促进知识传播与资源共享。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">联系管理员</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>资源分类</h4>
+                <ul>
+                    <li><a href="#">电影资源</a></li>
+                    <li><a href="#">电视剧集</a></li>
+                    <li><a href="#">软件工具</a></li>
+                    <li><a href="#">电子书籍</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 比思论坛 bt 版权所有. 本站资源仅供学习交流使用，请于下载后24小时内删除。</p>
+        </div>
+    </footer>
+
+</body>
+                                                                                                                                                                                                                                                                                                                                          </html>
