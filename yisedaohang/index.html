@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一色导航-全网资源聚合与精准搜索入口</title>
+    <meta name="description" content="一色导航提供全网优质网站分类导航，涵盖影视娱乐、设计素材、开发工具、软件下载及生活服务，一键直达，高效便捷的上网首选指南。">
+    <meta name="keywords" content="一色导航,网站导航,网址导航,在线工具,资源聚合">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 16px 8px 36px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quick Access Grid */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .quick-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+        }
+
+        .quick-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .quick-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .quick-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Categories Section */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .more-link {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        .more-link:hover { color: var(--primary-color); }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-header {
+            padding: 16px 20px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-list {
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .site-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .site-item:hover {
+            background: var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        .site-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            background: #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        /* Features Section */
+        .features {
+            background: #fff;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item h3 {
+            margin: 16px 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                height: auto;
+                flex-direction: column;
+                padding: 12px 0;
+                gap: 16px;
+            }
+            
+            .nav-links {
+                gap: 16px;
+                font-size: 0.9rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .category-list {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-list {
+                grid-template-columns: 1fr 1fr;
+            }
+            .site-item {
+                font-size: 0.8rem;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span>一色导航</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">热门推荐</a>
+                <a href="#">最新收录</a>
+                <a href="#">我的收藏</a>
+            </nav>
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="搜索网站或资源...">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>发现好用的网站</h1>
+            <p>一色导航为您精选全网优质资源，涵盖工具、娱乐、学习及生活服务，让上网更高效。</p>
+        </section>
+
+        <!-- Quick Access -->
+        <section class="quick-access">
+            <div class="quick-item">
+                <span class="quick-icon">🔍</span>
+                <span class="quick-title">搜索引擎</span>
+                <span class="quick-desc">全网搜索</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">📺</span>
+                <span class="quick-title">影视娱乐</span>
+                <span class="quick-desc">在线看剧</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🎨</span>
+                <span class="quick-title">设计素材</span>
+                <span class="quick-desc">灵感图库</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">💻</span>
+                <span class="quick-title">开发工具</span>
+                <span class="quick-desc">代码助手</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">📚</span>
+                <span class="quick-title">在线文库</span>
+                <span class="quick-desc">知识学习</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🛒</span>
+                <span class="quick-title">比价购物</span>
+                <span class="quick-desc">优惠聚合</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🌤️</span>
+                <span class="quick-title">实用查询</span>
+                <span class="quick-desc">天气汇率</span>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🎮</span>
+                <span class="quick-title">游戏专区</span>
+                <span class="quick-desc">游戏下载</span>
+            </div>
+        </section>
+
+        <!-- Categories Grid -->
+        <div class="section-title">
+            <span>热门分类</span>
+            <a href="#" class="more-link">查看更多 &rarr;</a>
+        </div>
+
+        <div class="category-grid">
+            <!-- Category 1: Development -->
+            <article class="category-card">
+                <div class="category-header">
+                    <span class="category-title">💻 开发与运维</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">Dev</span>
+                </div>
+                <div class="category-list">
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f97316"></div>GitHub</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#3b82f6"></div>Stack Overflow</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#10b981"></div>MDN Web Docs</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#8b5cf6"></div>Runoob 教程</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#ef4444"></div>W3C</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f59e0b"></div>Visual Studio Code</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#06b6d4"></div>Postman</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#ec4899"></div>Linux</a>
+                </div>
+            </article>
+
+            <!-- Category 2: Design -->
+            <article class="category-card">
+                <div class="category-header">
+                    <span class="category-title">🎨 设计与创意</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">Design</span>
+                </div>
+                <div class="category-list">
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f43f5e"></div>Pinterest</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#6366f1"></div>Dribbble</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#14b8a6"></div>Behance</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#8b5cf6"></div>Unsplash</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f97316"></div>Canva</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#3b82f6"></div>Figma</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#10b981"></div>Pixiv</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#06b6d4"></div>UIGF</a>
+                </div>
+            </article>
+
+            <!-- Category 3: Media -->
+            <article class="category-card">
+                <div class="category-header">
+                    <span class="category-title">🎬 影音娱乐</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">Media</span>
+                </div>
+                <div class="category-list">
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#ef4444"></div>Bilibili</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#000"></div>YouTube</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#3b82f6"></div>Netflix</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f59e0b"></div>豆瓣电影</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#8b5cf6"></div>网易云音乐</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#ec4899"></div>Muse</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#06b6d4"></div>爱奇艺</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#10b981"></div>腾讯视频</a>
+                </div>
+            </article>
+
+            <!-- Category 4: Tools -->
+            <article class="category-card">
+                <div class="category-header">
+                    <span class="category-title">🛠️ 实用工具</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">Tools</span>
+                </div>
+                <div class="category-list">
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f97316"></div>百度</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#3b82f6"></div>Google</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#10b981"></div>ChatGPT</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#8b5cf6"></div>Notion</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f43f5e"></div>有道翻译</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#06b6d4"></div>在线转换</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#ec4899"></div>思维导图</a>
+                    <a href="#" class="site-item"><div class="site-icon" style="background:#f59e0b"></div>PDF处理</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div style="font-size: 2rem;">⚡️</div>
+                    <h3>极速收录</h3>
+                    <p>每日更新优质网站，确保链接有效，拒绝死链。</p>
+                </div>
+                <div class="feature-item">
+                    <div style="font-size: 2rem;">🎯</div>
+                    <h3>精准分类</h3>
+                    <p>多维度标签体系，快速定位您需要的工具与服务。</p>
+                </div>
+                <div class="feature-item">
+                    <div style="font-size: 2rem;">🔒</div>
+                    <h3>安全无毒</h3>
+                    <p>人工审核收录源，保障访问安全，远离恶意广告。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <strong>一色导航</strong> - 专注于提供高效、便捷的互联网资源导航服务。
+            </div>
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">免责声明</a>
+                <a href="#">联系方式</a>
+                <a href="#">提交收录</a>
+            </div>
+            <div>
+                &copy; 2023 一色导航. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
