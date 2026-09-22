@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流浪法师-符文解析、出装思路与实战技巧指南</title>
+    <meta name="description" content="本站提供流浪法师瑞兹的符文搭配、技能加点顺序、核心出装推荐及对线与团战实战思路。包含连招技巧、克制关系分析及版本更新动态，助你轻松掌握法师一哥。">
+    <meta name="keywords" content="流浪法师, 瑞兹, 英雄联盟, 技能加点, 出装, 符文, 攻略">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #8b5cf6;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --border-radius: 12px;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 6rem 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Grid Layouts */
+        .section-title {
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skill Tree Visualization */
+        .skill-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-node {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .skill-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .skill-info {
+            flex: 1;
+        }
+
+        .skill-level {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+
+        /* Build Section */
+        .build-list {
+            list-style: none;
+        }
+
+        .build-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .build-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .build-rank {
+            font-weight: bold;
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .build-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .build-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .comparison-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b1120;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #334155;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-wrapper">
+        <div class="logo">RyzeGuide</div>
+        <nav>
+            <ul>
+                <li><a href="#skills" class="active">技能加点</a></li>
+                <li><a href="#builds">出装推荐</a></li>
+                <li><a href="#runes">符文配置</a></li>
+                <li><a href="#tips">实战技巧</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>掌握流浪法师<br>重塑战场节奏</h1>
+            <p>无论是中路的对线压制，还是团战中的极限输出，本指南为你提供从符文到出装的全套解决方案，助你驾驭蓝色法术的无限奥义。</p>
+            <a href="#builds" class="cta-button">查看最新出装</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Core Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">技能加点与连招</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">推荐加点顺序</span>
+                        <span class="tag">主Q</span>
+                    </div>
+                    <div class="skill-tree">
+                        <div class="skill-node">
+                            <div class="skill-icon">R</div>
+                            <div class="skill-info">
+                                <div class="skill-level">终极技能</div>
+                                <div>法术涌动：法术强度提升，法力值消耗降低。</div>
+                            </div>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-icon">Q</div>
+                            <div class="skill-info">
+                                <div class="skill-level">主要伤害技能</div>
+                                <div>超时空能量：向目标区域发射法术，造成魔法伤害并减速。</div>
+                            </div>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-icon">W</div>
+                            <div class="skill-info">
+                                <div class="skill-level">核心控制</div>
+                                <div>曲光屏障：创造一道屏障，阻挡敌方飞行道具，并反弹伤害。</div>
+                            </div>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-icon">E</div>
+                            <div class="skill-info">
+                                <div class="skill-level">机动性技能</div>
+                                <div>过载：下一次普攻变为法术伤害，并在范围内留下残影。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">经典连招公式</span>
+                        <span class="tag">必学</span>
+                    </div>
+                    <div class="card-content">
+                        <p style="margin-bottom: 1rem;"><strong>对线消耗：</strong>W(挡) -> Q(消耗) -> E(普攻)</p>
+                        <p style="margin-bottom: 1rem;"><strong>爆发连招：</strong>R(强化) -> Q -> E -> W(护盾) -> Q(二段)</p>
+                        <p style="margin-bottom: 1rem;"><strong>追击/逃生：</strong>E(残影) -> Q -> W(护盾) -> E(再次位移)</p>
+                        <p>注意：瑞兹的技能在叠加法术强度时收益极高，务必在团战中寻找机会开启大招叠加层数。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Builds Section -->
+        <section id="builds">
+            <h2 class="section-title">出装思路</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">神话/核心装备</span>
+                    </div>
+                    <ul class="build-list">
+                        <li class="build-item">
+                            <span class="build-rank">1</span>
+                            <span class="build-name">海克斯科技火箭腰带</span>
+                            <span class="build-note">移速+爆发</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">2</span>
+                            <span class="build-name">瑞莱的冰晶节杖</span>
+                            <span class="build-note">生命值+减速</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">3</span>
+                            <span class="build-name">莫雷洛秘典</span>
+                            <span class="build-note">重伤+法穿</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">后续合成选项</span>
+                    </div>
+                    <ul class="build-list">
+                        <li class="build-item">
+                            <span class="build-rank">4</span>
+                            <span class="build-name">灭世者的死亡之帽</span>
+                            <span class="build-note">最大化法强</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">5</span>
+                            <span class="build-name">中娅沙漏</span>
+                            <span class="build-note">保命金身</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">6</span>
+                            <span class="build-name">法师之靴</span>
+                            <span class="build-note">移速提升</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">打野/特殊流派</span>
+                    </div>
+                    <ul class="build-list">
+                        <li class="build-item">
+                            <span class="build-rank">-</span>
+                            <span class="build-name">幽梦之灵</span>
+                            <span class="build-note">快速清野/突进</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">-</span>
+                            <span class="build-name">冰霜女皇的指令</span>
+                            <span class="build-note">控制链</span>
+                        </li>
+                        <li class="build-item">
+                            <span class="build-rank">-</span>
+                            <span class="build-name">莫雷洛秘典</span>
+                            <span class="build-note">必备</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Runes Section -->
+        <section id="runes">
+            <h2 class="section-title">符文配置</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">主系：主宰</span>
+                        <span class="tag">高爆发</span>
+                    </div>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>基石符文</th>
+                            <td><strong>电刑</strong> - 多次技能命中触发爆发伤害。</td>
+                        </tr>
+                        <tr>
+                            <th>小符文</th>
+                            <td>残暴（攻速/CDR）+ 精密（法强）+ 着魔（法强）</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">副系：启迪</span>
+                        <span class="tag">对线压制</span>
+                    </div>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>核心</th>
+                            <td><strong>焦灼</strong> - 技能附带额外灼烧伤害。</td>
+                        </tr>
+                        <tr>
+                            <th>选择</th>
+                            <td>法力流系带（法力回复）+ 超然（CDR）</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips & Counter Section -->
+        <section id="tips">
+            <h2 class="section-title">实战技巧与克制关系</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title" style="margin-bottom:1rem;">克制关系</div>
+                    <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted);">
+                        <li><strong>克制：</strong> 没有硬控的法师、射手、短手近战（如安妮、阿狸）。</li>
+                        <li><strong>被克制：</strong> 带有强硬突进（如劫、亚索）和强力控制（如泰坦、锤石）的英雄。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-title" style="margin-bottom:1rem;">注意事项</div>
+                    <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted);">
+                        <li>瑞兹非常依赖蓝量，注意补刀并利用草丛回复蓝量。</li>
+                        <li>大招层数叠加后不要轻易交出，这是你团战输出的核心。</li>
+                        <li>利用W技能可以挡住敌方关键指向性技能（如安妮晕、卡萨丁大招）。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>关于瑞兹</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    流浪法师瑞兹是《英雄联盟》中一位操作上限极高且玩法多变的法师英雄。他需要精准的技能衔接和战场意识。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速导航</h4>
+                <ul>
+                    <li><a href="#skills">技能加点</a></li>
+                    <li><a href="#builds">出装推荐</a></li>
+                    <li><a href="#runes">符文解析</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>免责声明</h4>
+                <ul>
+                    <li><a href="#">游戏平衡性更新</a></li>
+                    <li><a href="#">玩家社区讨论</a></li>
+                    <li><a href="#">英雄背景故事</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 瑞兹攻略中心. 本站内容仅供学习参考，非官方授权内容。</p>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+</html>
